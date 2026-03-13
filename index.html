@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Valeron Partners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Cormorant Garamond', Georgia, serif; background: #0F1D3D; color: #fff; overflow-x: hidden; }
+
+  /* HERO — tighter, not full-viewport */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle radial glow */
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 440px;
+    height: 440px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    pointer-events: none;
+  }
+
+  .logo { width: 82px; margin-bottom: 28px; opacity: 0.95; position: relative; z-index: 1; }
+
+  .wordmark {
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: 18px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    position: relative;
+    z-index: 1;
+  }
+  .wordmark-sub {
+    font-size: 13px;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    color: #5A6580;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-statement {
+    font-size: 26px;
+    font-weight: 300;
+    font-style: italic;
+    color: #C9A84C;
+    line-height: 1.5;
+    max-width: 500px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 24px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #2D3748;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 0.7; } }
+
+  /* GOLD DIVIDER */
+  .gold-rule {
+    display: block;
+    width: 48px;
+    height: 1px;
+    background: #C9A84C;
+    margin: 0 auto;
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 48px 24px 48px;
+    text-align: center;
+  }
+  .about-inner { max-width: 580px; margin: 0 auto; }
+  .about-label {
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #C9A84C;
+    margin-bottom: 28px;
+  }
+  .about-text {
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.85;
+    color: #8B95A8;
+  }
+  .about-text strong {
+    color: #ccc;
+    font-weight: 500;
+  }
+
+  /* TEAM */
+  .team {
+    padding: 56px 24px 64px;
+  }
+  .team-label {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #C9A84C;
+    margin-bottom: 40px;
+  }
+  .team-grid {
+    max-width: 780px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    text-align: center;
+  }
+  .member {
+    padding: 32px 18px 28px;
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 2px;
+    transition: border-color 0.3s;
+  }
+  .member:hover { border-color: rgba(201,168,76,0.3); }
+  .member-name {
+    font-size: 21px;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .member-role {
+    font-size: 13px;
+    color: #C9A84C;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .member-location {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #4A5568;
+  }
+
+  /* CONTACT */
+  .contact {
+    text-align: center;
+    padding: 48px 24px;
+  }
+  .contact-cta {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #5A6580;
+    margin-bottom: 14px;
+  }
+  .contact a {
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+  }
+  .contact a:hover { color: #C9A84C; }
+
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 10px;
+    color: #1E2A45;
+    letter-spacing: 1px;
+  }
+
+  /* Fade-in on scroll */
+  .fade-section {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 80px 24px 56px; }
+    .wordmark { font-size: 28px; letter-spacing: 12px; }
+    .hero-statement { font-size: 21px; }
+    .team-grid { grid-template-columns: 1fr; max-width: 300px; }
+    .about-text { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <img src="data:image/png;base64,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" alt="Valeron Partners" class="logo">
+  <div class="wordmark">Valeron</div>
+  <div class="wordmark-sub">Partners</div>
+  <div class="hero-statement">Conviction Capital for<br>Breakthrough Biotech</div>
+</section>
+
+<section class="about fade-section">
+  <span class="gold-rule"></span>
+  <div class="about-inner" style="margin-top: 32px;">
+    <div class="about-label">Our Thesis</div>
+    <p class="about-text">
+      The best early-stage science is structurally underserved.
+      We invest where others can't, backing
+      <strong>novel therapeutics and MedTech</strong> with
+      <strong>proprietary clinical infrastructure</strong> and
+      <strong>sovereign partnerships</strong> that compress the path
+      to proof-of-concept.
+    </p>
+  </div>
+</section>
+
+<section class="team fade-section">
+  <span class="gold-rule"></span>
+  <div class="team-label" style="margin-top: 32px;">Founding Team</div>
+  <div class="team-grid">
+    <div class="member">
+      <div class="member-name">Zach Lomis</div>
+      <div class="member-role">Co-Founder &amp; Managing Partner</div>
+      <div class="member-location">New York, United States</div>
+    </div>
+    <div class="member">
+      <div class="member-name">Almas Kenessary</div>
+      <div class="member-role">Co-Founder &amp; Managing Partner</div>
+      <div class="member-location">Astana, Kazakhstan</div>
+    </div>
+    <div class="member">
+      <div class="member-name">Charlie Regis</div>
+      <div class="member-role">Co-Founder &amp; Operating Partner</div>
+      <div class="member-location">Dubai, UAE</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact fade-section">
+  <span class="gold-rule"></span>
+  <div class="contact-cta" style="margin-top: 28px;">Get in Touch</div>
+  <a href="mailto:zach@valeron.vc">zach@valeron.vc</a>
+</section>
+
+<div class="footer">Valeron Partners &middot; 2026</div>
+
+<script>
+// Simple scroll-triggered fade-in
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.fade-section').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
